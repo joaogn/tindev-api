@@ -1,6 +1,6 @@
 'use strict'
 
-import { Request, Response, ErrorRequestHandler } from 'express'
+import { Request, Response, ErrorRequestHandler, NextFunction } from 'express'
 import * as HttpStatus from 'http-status'
 
 // Class that has the methods responsible for the API response
@@ -15,7 +15,7 @@ class Handlers {
     res.status(HttpStatus.OK).json({ payload: data })
   }
 
-  errorHandlerApi (err: ErrorRequestHandler, req: Request, res: Response) {
+  errorHandlerApi (err: ErrorRequestHandler, req: Request, res: Response, next: NextFunction) {
     console.error(`API error handler execute: ${err}`)
     res.status(500).json({
       errorCode: 'ERR-001',
